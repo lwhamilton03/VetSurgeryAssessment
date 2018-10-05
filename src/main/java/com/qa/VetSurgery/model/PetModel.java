@@ -28,7 +28,6 @@ public class PetModel {
 	@NotNull
 	private String name; 
 	
-
 	@NotNull
 	@Lob
 	private String medicalHistory; 
@@ -38,6 +37,17 @@ public class PetModel {
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JsonIgnore
 	private OwnerModel owner; 
+	
+	public PetModel(String name, String medicalHistory)
+	{
+		this.name = name; 
+		this.medicalHistory = medicalHistory; 
+	}
+	
+	public PetModel()
+	{
+		
+	}
 	
 	public long getId() {
 		return id;
