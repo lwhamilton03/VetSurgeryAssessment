@@ -84,6 +84,16 @@ public class OwnerRepositoryTest {
 		OwnerModel model2 = new OwnerModel("Kyle", "Bath", "4656354");
 		entityManager.persist(model2);
 		entityManager.flush();
+		
+		if(myRepo.findByName("Cooper").getName().equals("Cooper"))
+		{
+			test.log(LogStatus.PASS, "Owner Cooper has been found");
+		}
+		else
+		{
+			test.log(LogStatus.FAIL, "Owner Cooper has NOT been found");
+		}
+		
 		assertEquals("There is no owner named Cooper", "Cooper", myRepo.findByName("Cooper").getName());
 	}
 	
@@ -99,7 +109,17 @@ public class OwnerRepositoryTest {
 		OwnerModel model2 = new OwnerModel("Kyle", "Bath", "46d57565");
 		entityManager.persist(model2);
 		entityManager.flush();
-		assertEquals("There is no Bristol", "Bath", myRepo.findByAddress("Bath").getAddress());
+		
+		if(myRepo.findByAddress("Bath").getAddress().equals("Bath"))
+		{
+			test.log(LogStatus.PASS, "Owner in Bath has been found");
+		}
+		else
+		{
+			test.log(LogStatus.FAIL, "Owner in Bath has NOT been found");
+		}
+		
+		assertEquals("There is no owner found with this Address", "Bath", myRepo.findByAddress("Bath").getAddress());
 	}
 	
 	@Test
@@ -114,7 +134,17 @@ public class OwnerRepositoryTest {
 		OwnerModel model2 = new OwnerModel("Kyle", "Bath", "4656354");
 		entityManager.persist(model2);
 		entityManager.flush();
-		assertEquals("There is no owner with the Contact Number", "444446", myRepo.findByContactNum("444446").getName());
+		
+		if(myRepo.findByContactNum("444446").getContactNum().equals("444446"))
+		{
+			test.log(LogStatus.PASS, "Owner in Bath has been found");
+		}
+		else
+		{
+			test.log(LogStatus.FAIL, "Owner in Bath has NOT been found");
+		}
+		
+		assertEquals("There is no owner with the Contact Number", "444446", myRepo.findByContactNum("444446").getContactNum());
 	}
 	
 	@After
