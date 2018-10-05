@@ -52,6 +52,16 @@ public class OwnerModel implements Serializable {
 	@LastModifiedDate
 	private Date lastModified;
 
+	public OwnerModel(String name, String address, int contactNum)
+	{
+		this.name = name; 
+		this.address = address;
+		this.contactNum = contactNum; 
+	}
+	public OwnerModel()
+	{
+		
+	}
 	public Long getId() {
 		return id;
 	}

@@ -20,9 +20,6 @@ import com.qa.VetSurgeryModel.model.OwnerModel;
 import com.qa.VetSurgeryRepository.repository.OwnerRepository;
 
 
-
-
-
 @RestController
 @RequestMapping("/api")
 public class OwnerController {
@@ -31,7 +28,7 @@ public class OwnerController {
 	OwnerRepository myRepository;
 	
 	//Method to CREATE an owner 
-	@PostMapping("/OwnerModel")
+	@PostMapping("/owner")
 	public OwnerModel createPerson(@Valid @RequestBody OwnerModel mSDM) 
 	{
 		return myRepository.save(mSDM);
@@ -55,14 +52,14 @@ public class OwnerController {
 	//Method to UPDATE an owner
 	@PutMapping("/owner/{id}")
 	public OwnerModel updatePerson(@PathVariable(value = "id") Long ownerID,
-		@Valid @RequestBody OwnerModel personDetails)
+		@Valid @RequestBody OwnerModel ownerDetails)
 	{
 			
-		OwnerModel mSDM = myRepository.findById(ownerID).orElseThrow(()-> new ResourceNotFoundException("Person","id",ownerID));
+		OwnerModel mSDM = myRepository.findById(ownerID).orElseThrow(()-> new ResourceNotFoundException("owner","id",ownerID));
 	
-		mSDM.setName(personDetails.getName());
-		mSDM.setAddress(personDetails.getAddress());
-		mSDM.setContactNum(personDetails.getContactNum());
+		mSDM.setName(ownerDetails.getName());
+		mSDM.setAddress(ownerDetails.getAddress());
+		mSDM.setContactNum(ownerDetails.getContactNum());
 		
 		OwnerModel updateData = myRepository.save(mSDM);
 		return updateData;
@@ -71,7 +68,7 @@ public class OwnerController {
 	//Method to DELETE an owner
 	@DeleteMapping("/owner/{id}")
 	public ResponseEntity<?> deletePerson(@PathVariable(value = "id")Long ownerID) {
-		OwnerModel mSDM =  myRepository.findById(ownerID).orElseThrow(()-> new ResourceNotFoundException("Person","id",ownerID));
+		OwnerModel mSDM =  myRepository.findById(ownerID).orElseThrow(()-> new ResourceNotFoundException("owner","id",ownerID));
 		
 		myRepository.delete(mSDM);
 		return ResponseEntity.ok().build();
