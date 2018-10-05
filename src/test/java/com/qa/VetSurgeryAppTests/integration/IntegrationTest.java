@@ -1,4 +1,4 @@
-package integration;
+package com.qa.VetSurgeryAppTests.integration;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -10,17 +10,23 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.qa.VetSurgery.VetSurgery;
 import com.qa.VetSurgery.model.OwnerModel;
 import com.qa.VetSurgery.repository.OwnerRepository;
-import com.qa.mySpringBootDatabaseApp.model.MySpringBootDataModel;
-import com.qa.mySpringBootDatabaseApp.repository.MySpringBootRepository;
+
 
 @RunWith(SpringRunner.class)
-public class IntegrationTest {
+@SpringBootTest(classes = {VetSurgery.class})
+@AutoConfigureMockMvc
+public class IntegrationTest 
+
+{
 
 	@Autowired
 	private MockMvc mvc; 
@@ -43,4 +49,5 @@ public class IntegrationTest {
 				.andExpect(status().isOk()).andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
 				.andExpect(jsonPath("$[0].name", is("Mitch")));
 		}
+	
 }
