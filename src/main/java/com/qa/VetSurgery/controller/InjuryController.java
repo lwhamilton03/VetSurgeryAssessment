@@ -25,8 +25,8 @@
 //	
 //	@Autowired
 //	private PetRepository myRepository; 
-
-	//Posting a pet to a owner 
+//
+//	//Posting a pet to a owner 
 //	@PostMapping("/owner/{ownerId}/pet/{petId}/injury")
 //	public InjuryModel createComment(@PathVariable (value = "petId") Long petId, @Valid @RequestBody InjuryModel injuryModel)
 //	{
@@ -35,6 +35,6 @@
 //				return injuryRepository.save(injuryModel);})
 //				.orElseThrow(() -> new ResourceNotFoundException("Pet", "id", injuryModel));
 //	}
-
-
-}
+//
+//
+//}
