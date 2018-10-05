@@ -1,4 +1,4 @@
-package com.qa.VetSurgeryException.exception;
+package com.qa.VetSurgery.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

@@ -1,4 +1,6 @@
-package com.qa.VetSurgeryModel.model;
+package com.qa.VetSurgery.model;
+
+
 
 import java.io.Serializable;
 import java.util.Date;
@@ -13,6 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -32,11 +35,11 @@ public class OwnerModel implements Serializable {
 	private Long id; 
 	
 	//to ensure the field is not Null
-	@NotBlank
+	@NotNull
 	private String name; 
 	
-	@NotBlank
-	private Integer contactNum; 
+	@NotNull
+	private String contactNum; 
 	
 	// This can be left blank
 	private String address; 
@@ -52,7 +55,7 @@ public class OwnerModel implements Serializable {
 	@LastModifiedDate
 	private Date lastModified;
 
-	public OwnerModel(String name, String address, int contactNum)
+	public OwnerModel(String name, String address, String contactNum)
 	{
 		this.name = name; 
 		this.address = address;
@@ -66,7 +69,7 @@ public class OwnerModel implements Serializable {
 		return id;
 	}
 
-	public Integer getContactNum() {
+	public String getContactNum() {
 		return contactNum;
 	}
 
@@ -102,7 +105,7 @@ public class OwnerModel implements Serializable {
 		this.lastModified = lastModified;
 	}
 
-	public void setContactNum(Integer contactNum) {
+	public void setContactNum(String contactNum) {
 		this.contactNum = contactNum;
 	}
 
@@ -111,3 +114,4 @@ public class OwnerModel implements Serializable {
 	}
 
 }
+

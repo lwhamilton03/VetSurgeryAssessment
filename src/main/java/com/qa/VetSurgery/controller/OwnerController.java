@@ -1,4 +1,4 @@
-package com.qa.VetSurgeryController.controller;
+package com.qa.VetSurgery.controller;
 
 import java.util.List;
 
@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.qa.VetSurgeryException.exception.ResourceNotFoundException;
-import com.qa.VetSurgeryModel.model.OwnerModel;
-import com.qa.VetSurgeryRepository.repository.OwnerRepository;
+import com.qa.VetSurgery.exception.ResourceNotFoundException;
+import com.qa.VetSurgery.model.OwnerModel;
+import com.qa.VetSurgery.repository.OwnerRepository;
 
 
 @RestController
@@ -29,14 +29,14 @@ public class OwnerController {
 	
 	//Method to CREATE an owner 
 	@PostMapping("/owner")
-	public OwnerModel createPerson(@Valid @RequestBody OwnerModel mSDM) 
+	public OwnerModel createOwner(@Valid @RequestBody OwnerModel mSDM) 
 	{
 		return myRepository.save(mSDM);
 	}
 	
 	//Method to GET an owner
 	@GetMapping("owner/{id}")
-	public OwnerModel getPersonbyID(@PathVariable(value = "id")Long ownerID)
+	public OwnerModel getOwnerbyID(@PathVariable(value = "id")Long ownerID)
 	{
 		return myRepository.findById(ownerID)
 			.orElseThrow(()-> new ResourceNotFoundException("OwnerModel","id",ownerID));
@@ -44,18 +44,18 @@ public class OwnerController {
 	
 	//Method to GET ALL owners
 	@GetMapping("/owner")
-	public List<OwnerModel> getAllPeople()
+	public List<com.qa.VetSurgery.model.OwnerModel> getAllOwner()
 	{
 		return myRepository.findAll();
 	}
 		
 	//Method to UPDATE an owner
 	@PutMapping("/owner/{id}")
-	public OwnerModel updatePerson(@PathVariable(value = "id") Long ownerID,
-		@Valid @RequestBody OwnerModel ownerDetails)
+	public com.qa.VetSurgery.model.OwnerModel updateOwner(@PathVariable(value = "id") Long ownerID,
+		@Valid @RequestBody com.qa.VetSurgery.model.OwnerModel ownerDetails)
 	{
 			
-		OwnerModel mSDM = myRepository.findById(ownerID).orElseThrow(()-> new ResourceNotFoundException("owner","id",ownerID));
+		OwnerModel mSDM = myRepository.findById(ownerID).orElseThrow(()-> new ResourceNotFoundException("Owner","id",ownerID));
 	
 		mSDM.setName(ownerDetails.getName());
 		mSDM.setAddress(ownerDetails.getAddress());
@@ -67,8 +67,8 @@ public class OwnerController {
 	
 	//Method to DELETE an owner
 	@DeleteMapping("/owner/{id}")
-	public ResponseEntity<?> deletePerson(@PathVariable(value = "id")Long ownerID) {
-		OwnerModel mSDM =  myRepository.findById(ownerID).orElseThrow(()-> new ResourceNotFoundException("owner","id",ownerID));
+	public ResponseEntity<?> deleteOwner(@PathVariable(value = "id")Long ownerID) {
+		OwnerModel mSDM =  myRepository.findById(ownerID).orElseThrow(()-> new ResourceNotFoundException("Owner","id",ownerID));
 		
 		myRepository.delete(mSDM);
 		return ResponseEntity.ok().build();
