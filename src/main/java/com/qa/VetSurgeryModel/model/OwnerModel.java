@@ -56,6 +56,14 @@ public class OwnerModel implements Serializable {
 		return id;
 	}
 
+	public Integer getContactNum() {
+		return contactNum;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
