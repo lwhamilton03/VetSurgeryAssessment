@@ -7,7 +7,13 @@ import com.qa.VetSurgery.model.OwnerModel;
 
 
 
+
 @Repository
 public interface OwnerRepository extends JpaRepository<OwnerModel, Long>{
 
+	public OwnerModel findByName(String name); 
+	
+	public OwnerModel findByAddress(String address); 
+	
+	public OwnerModel findByContactNum(String contactNum);
 }
